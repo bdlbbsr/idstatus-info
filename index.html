@@ -53,6 +53,7 @@
       }
     </style>
     <!-- https://bdlbbsr.github.io/idstatus/ -->
+    <!-- <script src="https://cdn.jsdelivr.net/gh/bdlbbsr/idstatus@main/widget.js"></script>  -->
   </head>
 
   <body>
@@ -66,8 +67,9 @@
       <b>location data, motion sensor data, and media access</b> to provide
       safety features such as crash detection and emergency alerts.<br /><br />
       <b
-        >Location data may be collected in the background (even when the app is
-        minimized or not in use)</b
+        >Location data may be collected in the background, even when the app is
+        minimized. However, location data is not collected after the app has
+        been swiped away, fully closed, or after you have signed out.</b
       >
       to enable real-time safety monitoring and automatic emergency triggers.<br /><br />
       By installing and using this app and granting permissions, you
@@ -131,8 +133,12 @@
       </tr>
     </table>
     <p>
-  <i>Note on Sensor Processing:</i> Motion data is collected locally using the device's built-in Accelerometer and Gyroscope APIs. Location details are obtained via global navigation satellite systems (GPS) and cellular network trilateration to ensure tracking precision during high-force disruptions.
-</p>
+      <i>Note on Sensor Processing:</i> Motion data is collected locally using
+      the device's built-in Accelerometer and Gyroscope APIs. Location details
+      are obtained via global navigation satellite systems (GPS) and cellular
+      network trilateration to ensure tracking precision during high-force
+      disruptions.
+    </p>
 
     <h2>2. How We Use Your Data</h2>
     <ul>
