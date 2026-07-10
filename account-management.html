@@ -1,0 +1,561 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ID Status - Account & Data Management Portal</title>
+    <style>
+      :root {
+        --primary-color: #2563eb;
+        --danger-color: #dc2626;
+        --text-dark: #1f2937;
+        --bg-light: #f3f4f6;
+      }
+
+      body {
+        font-family:
+          -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+          Arial, sans-serif;
+        background-color: var(--bg-light);
+        color: var(--text-dark);
+        line-height: 1.6;
+        margin: 0;
+        padding: 20px;
+      }
+
+      .container {
+        max-width: 550px;
+        margin: 40px auto;
+        background: #ffffff;
+        padding: 30px;
+        border-radius: 12px;
+        box-shadow:
+          0 4px 6px -1px rgba(0, 0, 0, 0.1),
+          0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      }
+
+      h1 {
+        font-size: 24px;
+        margin-bottom: 10px;
+        color: #111827;
+      }
+
+      p {
+        font-size: 14px;
+        color: #4b5563;
+        margin-bottom: 25px;
+      }
+
+      .form-group {
+        margin-bottom: 20px;
+      }
+
+      label {
+        display: block;
+        font-weight: 600;
+        margin-bottom: 6px;
+        font-size: 14px;
+      }
+
+      input[type="text"],
+      input[type="tel"],
+      select,
+      textarea {
+        width: 100%;
+        padding: 10px 12px;
+        border: 1px solid #d1d5db;
+        border-radius: 6px;
+        font-size: 15px;
+        box-sizing: border-box;
+        transition: border-color 0.2s;
+      }
+
+      input:focus,
+      select:focus,
+      textarea:focus {
+        outline: none;
+        border-color: var(--primary-color);
+        box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+      }
+
+      textarea {
+        resize: vertical;
+        min-height: 100px;
+      }
+
+      .btn {
+        display: block;
+        width: 100%;
+        padding: 12px;
+        background-color: var(--primary-color);
+        color: white;
+        border: none;
+        border-radius: 6px;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background-color 0.2s;
+      }
+
+      .btn:hover {
+        background-color: #1d4ed8;
+      }
+
+      .btn-danger {
+        background-color: var(--danger-color);
+      }
+
+      .btn-danger:hover {
+        background-color: #b91c1c;
+      }
+
+      .notice {
+        background-color: #fef2f2;
+        border-left: 4px solid var(--danger-color);
+        padding: 12px;
+        border-radius: 4px;
+        font-size: 13px;
+        color: #991b1b;
+        margin-bottom: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>🛡️ Account & Data Management</h1>
+      <p>
+        Please fill out this form to request modifications to your ID Status
+        account, including permanent profile deletion.
+      </p>
+
+      <!-- UI Note: Dynamically switches theme based on selected action -->
+      <div id="delete-warning" class="notice" style="display: none">
+        <strong>Warning:</strong> Selecting "Permanently Delete Account" will
+        wipe all saved emergency contacts, safety telemetry, and verified logs
+        from our secure servers within 30 days. This action cannot be undone.
+      </div>
+
+      <!-- Replace 'your-email@example.com' with your actual developer contact email -->
+      <form
+        action="https://script.google.com/macros/s/AKfycbwv5r81uKpH5Zi9b4KB82chwQ9Lygra298WDvCghdkwMF6TKlH1qr-YHOQI0dm3r5yG/exec"
+        method="POST"
+        id="requestForm"
+      >
+        <div class="form-group">
+          <label for="username">Username / User ID</label>
+          <input
+            type="text"
+            id="username"
+            name="username"
+            placeholder="e.g., john_doe"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="mobile">Registered Mobile Number</label>
+          <input
+            type="tel"
+            id="mobile"
+            name="mobile"
+            placeholder="e.g., +1 555-555-5555"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="action">What action would you like to take?</label>
+          <select
+            id="action"
+            name="action"
+            onchange="handleActionChange(this)"
+            required
+          >
+            <option value="" disabled selected>Select an option...</option>
+            <option value="delete">Permanently Delete Account & Data</option>
+            <option value="export">Export My Data Logs</option>
+            <option value="correct">Correct Profile Information</option>
+            <option value="other">Other Inquiry</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="message">Additional Message / Context</label>
+          <textarea
+            id="message"
+            name="message"
+            placeholder="Please provide any extra details regarding your request..."
+          ></textarea>
+        </div>
+
+        <button type="submit" id="submitBtn" class="btn">Submit Request</button>
+      </form>
+    </div>
+
+    <script>
+      function handleActionChange(selectElement) {
+        const warningBlock = document.getElementById("delete-warning");
+        const submitBtn = document.getElementById("submitBtn");
+
+        if (selectElement.value === "delete") {
+          warningBlock.style.display = "block";
+          submitBtn.classList.add("btn-danger");
+        } else {
+          warningBlock.style.display = "none";
+          submitBtn.classList.remove("btn-danger");
+        }
+      }
+    </script>
+  </body>
+</html>
+
+<!-- 
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Account & Data Management</title>
+
+    <style>
+      :root {
+        --primary: #2563eb;
+        --primary-hover: #1d4ed8;
+        --danger: #dc2626;
+        --danger-hover: #b91c1c;
+        --bg: #f3f4f6;
+        --card: #ffffff;
+        --border: #d1d5db;
+        --text: #1f2937;
+        --muted: #6b7280;
+        --success: #16a34a;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        padding: 20px;
+        background: var(--bg);
+        font-family:
+          -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial,
+          sans-serif;
+        color: var(--text);
+      }
+
+      .container {
+        max-width: 560px;
+        margin: 40px auto;
+        background: var(--card);
+        border-radius: 14px;
+        padding: 32px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      }
+
+      h1 {
+        margin-top: 0;
+        margin-bottom: 10px;
+        font-size: 28px;
+      }
+
+      .subtitle {
+        color: var(--muted);
+        margin-bottom: 28px;
+        line-height: 1.6;
+      }
+
+      .notice {
+        display: none;
+        background: #fef2f2;
+        border-left: 4px solid var(--danger);
+        color: #991b1b;
+        padding: 14px;
+        border-radius: 8px;
+        margin-bottom: 24px;
+        font-size: 14px;
+      }
+
+      .form-group {
+        margin-bottom: 20px;
+      }
+
+      label {
+        display: block;
+        font-weight: 600;
+        margin-bottom: 8px;
+      }
+
+      small {
+        color: var(--muted);
+        font-weight: 400;
+      }
+
+      input,
+      select,
+      textarea {
+        width: 100%;
+        padding: 12px 14px;
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        font-size: 15px;
+        transition: 0.2s;
+      }
+
+      input:focus,
+      select:focus,
+      textarea:focus {
+        outline: none;
+        border-color: var(--primary);
+        box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.12);
+      }
+
+      textarea {
+        min-height: 120px;
+        resize: vertical;
+      }
+
+      .required {
+        color: var(--danger);
+      }
+
+      .help {
+        margin-top: 6px;
+        font-size: 13px;
+        color: var(--muted);
+      }
+
+      button {
+        width: 100%;
+        border: none;
+        padding: 14px;
+        font-size: 16px;
+        font-weight: 600;
+        color: #fff;
+        background: var(--primary);
+        border-radius: 8px;
+        cursor: pointer;
+        transition: 0.2s;
+      }
+
+      button:hover {
+        background: var(--primary-hover);
+      }
+
+      button.btn-danger {
+        background: var(--danger);
+      }
+
+      button.btn-danger:hover {
+        background: var(--danger-hover);
+      }
+
+      button:disabled {
+        opacity: 0.7;
+        cursor: not-allowed;
+      }
+
+      .footer {
+        margin-top: 24px;
+        text-align: center;
+        color: var(--muted);
+        font-size: 13px;
+      }
+
+      @media (max-width: 600px) {
+        .container {
+          margin: 10px auto;
+          padding: 22px;
+        }
+
+        h1 {
+          font-size: 24px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <h1>🛡️ Account & Data Management</h1>
+
+      <p class="subtitle">
+        Use this form to request account deletion, export your data, correct
+        your profile, or contact support regarding your account.
+      </p>
+
+      <div id="delete-warning" class="notice">
+        <strong>Warning:</strong><br /><br />
+        Requesting permanent account deletion will permanently remove your
+        account data from our systems within approximately 30 days after
+        verification. This action cannot be undone once completed.
+      </div>
+
+      <form
+        id="requestForm"
+        action="https://script.google.com/macros/s/AKfycbwv5r81uKpH5Zi9b4KB82chwQ9Lygra298WDvCghdkwMF6TKlH1qr-YHOQI0dm3r5yG/exec"
+        method="POST"
+        novalidate
+      >
+        <div class="form-group">
+          <label for="username">
+            Username / User ID
+            <small>(Optional)</small>
+          </label>
+
+          <input
+            type="text"
+            id="username"
+            name="username"
+            maxlength="50"
+            autocomplete="username"
+            placeholder="e.g. john_doe"
+          />
+
+          <div class="help">Leave blank if you don't know your username.</div>
+        </div>
+
+        <div class="form-group">
+          <label for="mobile">
+            Registered Mobile Number
+            <span class="required">*</span>
+          </label>
+
+          <input
+            type="tel"
+            id="mobile"
+            name="mobile"
+            required
+            maxlength="20"
+            autocomplete="tel"
+            inputmode="tel"
+            placeholder="+91 9876543210"
+            pattern="^\+?[0-9\s\-]{7,20}$"
+          />
+
+          <div class="help">
+            Enter the mobile number associated with your account.
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="action">
+            Select Request
+            <span class="required">*</span>
+          </label>
+
+          <select
+            id="action"
+            name="action"
+            required
+            onchange="handleActionChange(this)"
+          >
+            <option value="">Choose an option</option>
+            <option value="delete">Permanently Delete Account & Data</option>
+            <option value="export">Export My Data</option>
+            <option value="correct">Correct Profile Information</option>
+            <option value="other">Other Inquiry</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="message">
+            Additional Details
+            <small>(Optional)</small>
+          </label>
+
+          <textarea
+            id="message"
+            name="message"
+            maxlength="1000"
+            placeholder="Provide additional information if necessary..."
+          ></textarea>
+
+          <div class="help">Maximum 1000 characters.</div>
+        </div>
+
+        <button id="submitBtn" type="submit">Submit Request</button>
+      </form>
+
+      <div class="footer">
+        We'll review your request and process it according to our account
+        management policy.
+      </div>
+    </div>
+
+    <script>
+      const form = document.getElementById("requestForm");
+      const btn = document.getElementById("submitBtn");
+      const warning = document.getElementById("delete-warning");
+      const action = document.getElementById("action");
+
+      function handleActionChange(select) {
+        if (select.value === "delete") {
+          warning.style.display = "block";
+          btn.classList.add("btn-danger");
+        } else {
+          warning.style.display = "none";
+          btn.classList.remove("btn-danger");
+        }
+      }
+
+      // Live validation for mobile number
+      const mobile = document.getElementById("mobile");
+
+      mobile.addEventListener("input", function () {
+        this.setCustomValidity("");
+
+        const pattern = /^\+?[0-9\s-]{7,20}$/;
+
+        if (this.value.trim() !== "" && !pattern.test(this.value)) {
+          this.setCustomValidity("Please enter a valid mobile number.");
+        }
+      });
+
+      // Form submission
+      form.addEventListener("submit", function (e) {
+        // Browser validation
+        if (!form.checkValidity()) {
+          e.preventDefault();
+          form.reportValidity();
+          return;
+        }
+
+        // Extra confirmation for deletion requests
+        if (action.value === "delete") {
+          const confirmed = confirm(
+            "Are you sure you want to request permanent account deletion?\n\n" +
+              "Your request will be reviewed and, once processed, your account and associated data will be permanently removed.\n\n" +
+              "This action cannot be undone after processing.",
+          );
+
+          if (!confirmed) {
+            e.preventDefault();
+            return;
+          }
+        }
+
+        // Prevent duplicate submissions
+        btn.disabled = true;
+        btn.textContent = "Submitting...";
+
+        // Safety timeout (re-enable if submission fails)
+        setTimeout(function () {
+          btn.disabled = false;
+          btn.textContent = "Submit Request";
+        }, 15000);
+      });
+
+      // Character counter (optional)
+      const message = document.getElementById("message");
+
+      message.addEventListener("input", function () {
+        if (this.value.length > 1000) {
+          this.value = this.value.substring(0, 1000);
+        }
+      });
+    </script>
+  </body>
+</html> -->
