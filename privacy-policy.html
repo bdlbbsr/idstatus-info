@@ -59,20 +59,25 @@
   <body>
     <h1>Privacy Policy</h1>
     <p><strong>Effective Date:</strong> June 24, 2026</p>
-    <p><strong>Last Updated:</strong> September 2, 2026</p>
+    <p><strong>Last Updated:</strong> September 12, 2026</p>
 
     <div class="box">
       <strong>🛡️ Important Disclosure & User Consent</strong><br /><br />
       ID Status collects and processes
       <b>location data, motion sensor data, and media access</b> to provide
-      safety features such as crash detection and emergency alerts.<br /><br />
+      SafeMode safety features such as crash detection, overspeed alerts, and
+      emergency notifications.<br /><br />
       <b
-        >Location data may be collected in the background, even when the app is
-        minimized, to enable real-time safety monitoring and automatic
-        emergency triggers. However, location data is not collected after the
-        app has been swiped away, fully closed, or after you have signed out —
-        or if you turn off the "Safe Mode" switch in Settings, which stops all
-        background location monitoring immediately.</b
+        >Location data continues to be collected in the background while
+        "Safe Mode" is enabled — including after you minimize or swipe away
+        the app, after the operating system reclaims the app to free memory,
+        or after your phone restarts — so crash and overspeed protection
+        can keep working without you needing to reopen the app. Force-stopping
+        IdStatus from system settings stops monitoring until you open the app
+        again. This monitoring stops when you turn off the "Safe Mode" switch
+        in Settings, sign out, revoke location permission, or when your
+        signed-in session expires (about 7 days without a successful session
+        refresh).</b
       ><br /><br />
       By installing and using this app and granting permissions, you
       <b>explicitly consent</b> to the collection and use of your data as
@@ -104,17 +109,22 @@
       <tr>
         <td><b>Background Location</b></td>
         <td>
-          To enable continuous safety monitoring even when the app is minimized,
-          or the screen is locked. <b>Turning off the "Safe Mode" switch in
-          Settings stops all background location monitoring immediately.</b>
+          To enable SafeMode safety monitoring when the app is minimized,
+          swiped away from recent apps, reclaimed by the OS to free memory,
+          or after your phone restarts. <b>Turning off Safe Mode in Settings,
+          signing out, revoking location permission, or session expiry (about
+          7 days without a successful session refresh) stops background
+          location monitoring. Force-stopping the app stops monitoring until
+          you open IdStatus again.</b>
         </td>
       </tr>
 
       <tr>
         <td><b>Motion Sensors</b></td>
         <td>
-          Accelerometer data is used to detect high G-force impacts (vehicle
-          accidents).
+          Accelerometer data may be sampled while you appear to be driving
+          (and briefly during crash confirmation) to detect high G-force
+          vehicle impacts.
         </td>
       </tr>
 
